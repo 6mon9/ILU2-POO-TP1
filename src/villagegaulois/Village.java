@@ -13,6 +13,39 @@ public class Village {
 		this.nom = nom;
 		villageois = new Gaulois[nbVillageoisMaximum];
 	}
+	
+	private static class Marche{
+		private Etal[] etals;
+		
+		public Marche(int nombreEtals) {
+            etals = new Etal[nombreEtals]; 
+            for (int i = 0; i < nombreEtals; i++) {
+                etals[i] = new Etal(); 
+            }
+        }
+		
+		public void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit) {
+            if (indiceEtal >= 0 && indiceEtal < etals.length) {
+                etals[indiceEtal].occuperEtal(vendeur, produit, nbProduit);
+            } else {
+                System.out.println("L'indice de l'étal est invalide.");
+            }
+        }
+		
+		public int trouverEtalLibre() {
+			for (int i = 0; i < etals.length ;i++) {
+				if (!etals[i].isEtalOccupe()) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		public Etal[] trouverEtals(String produit) {
+			
+		}
+		
+	}
 
 	public String getNom() {
 		return nom;
